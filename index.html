@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DSA Visualizer & Practice Platform</title>
+    <link rel="icon" type="image/x-icon" href="https://images.squarespace-cdn.com/content/v1/5fce63270356d927d7eecdbd/51ce503b-b869-4984-bd86-de442651f1fd/favicon.ico?format=100w">
+    <link rel="stylesheet" href="/Css/style.css">
+    
+</head>
+<body>
+    <header>
+        <div class="container ct">
+            <h1>VIRTUAL BOOK</h1>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/Html/cources.html">Courses</a></li>
+                    <li><a href="/Html/visualize.html">Visualize</a></li>
+                    <li><a href="/Html/learn.html">Learn</a></li>
+                    <li><a href="/Html/practice.html">Practice</a></li>
+                    <!-- <li><a href="/Html/login.html">Login</a></li> -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- <section class="hero">
+        <div class="container">
+            <h2>Master Data Structures and Algorithms</h2>
+            <p>Learn, visualize, and practice popular algorithms and data structures in an interactive way.</p>
+            <a href="/Html/start-learning.html" class="btn">Start Learning</a>
+        </div>
+    </section> -->
+
+ 
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <img src="/Img/newlogo.jpg" alt="Neeraj Kumhar" class="hero-photo">
+                <div class="hero-text">
+                    <h2>Virtual Book – The Future of Learning!</h2>
+                    <p>Transforming Traditional Learning into a Digital Experience
+                        Say goodbye to outdated textbooks and static notes! Virtual Book brings you a smarter, interactive, and AI-powered learning platform. Explore engaging notes, virtual examples, video tutorials, handwritten notes, AI assistance, and more – all tailored for students from school to college.</p>
+                    <a href="/Html/start-learning.html" class="btn">Start Learning</a>
+                    <!-- <a href="/Html/vr.html" class="btn">VR Implementation</a> -->
+                </div>
+            </div>  
+        </div>
+    </section>
+    <div class="contain">
+        <h1>Broad Areas of Virtual Labs</h1>
+        <input type="text" id="search" placeholder="Search areas...">
+        <div id="buttons-container">
+            <button class="area-button" data-area="Electronics & Communications"><span class="cube"></span>Electronics & Communications</button>
+            <button class="area-button" data-area="Computer Science & Engineering"><span class="cube"></span>Computer Science & Engineering</button>
+            <button class="area-button" data-area="Electrical Engineering"><span class="cube"></span>Electrical Engineering</button>
+            <button class="area-button" data-area="Mechanical Engineering"><span class="cube"></span>Mechanical Engineering</button>
+            <button class="area-button" data-area="Chemical Engineering"><span class="cube"></span>Chemical Engineering</button>
+            <button class="area-button" data-area="Biotechnology and Biomedical Engineering"><span class="cube"></span>Biotechnology and Biomedical Engineering</button>
+            <button class="area-button" data-area="Civil Engineering"><span class="cube"></span>Civil Engineering</button>
+            <button class="area-button" data-area="Chemical Sciences"><span class="cube"></span>Chemical Sciences</button>
+        </div>
+    </div>
+    <div class="chbot"><!-- Chatbot Toggle Button -->
+        <button class="chatbot-toggle" onclick="toggleChat()">💬</button>
+    
+        <!-- Chatbot Interface -->
+        <div class="chatbot" id="chatbot">
+            <div class="chat-header">
+                <span>Virtual Lab Assistant</span>
+                <button onclick="toggleChat()">×</button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <div class="message bot">Hello! I'm your Virtual Lab Assistant. How can I help you today?</div>
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="userInput" placeholder="Type your message...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 DSA Visualizer & Practice Platform | Master Team | All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="/Js/main.js"></script>
+</body>
+</html>
