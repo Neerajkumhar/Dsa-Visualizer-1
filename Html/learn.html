@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Data Structures & Algorithms</title>
+    <link rel="stylesheet" href="/Css/learn.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Learn Data Structures & Algorithms</h1>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/Html/Dsa.html">DSA</a></li>
+                    <li><a href="/Html/practice.html">Practice</a></li>
+                    <li><a href="/Html/learn.html">Learn</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2>Learn Data Structures & Algorithms</h2>
+            <p>Start with foundational topics and move to advanced concepts, learning how each data structure and algorithm works with examples and code snippets.</p>
+
+            <div class="learn-navigation">
+                <ul>
+                    <li><a href="#arrays">Arrays</a></li>
+                    <li><a href="#linked-lists">Linked Lists</a></li>
+                    <li><a href="#stacks">Stacks</a></li>
+                    <li><a href="#queues">Queues</a></li>
+                    <li><a href="#trees">Trees</a></li>
+                    <li><a href="#graphs">Graphs</a></li>
+                    <li><a href="#sorting-algorithms">Sorting Algorithms</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Arrays Section -->
+    <section class="section" id="arrays">
+        <div class="container">
+            <h3>Arrays</h3>
+            <p>Arrays are a fundamental data structure where elements are stored in contiguous memory locations. Each element can be accessed directly by using its index.</p>
+            
+            <h4>Code Example:</h4>
+            <pre><code>
+// Python Example - Arrays
+arr = [10, 20, 30, 40, 50]
+print("Original array:", arr)
+
+# Access element at index 2
+print("Element at index 2:", arr[2])
+
+# Modify element at index 1
+arr[1] = 25
+print("Updated array:", arr)
+            </code></pre>
+        </div>
+    </section>
+
+    <!-- Linked Lists Section -->
+    <section class="section" id="linked-lists">
+        <div class="container">
+            <h3>Linked Lists</h3>
+            <p>A Linked List is a linear data structure where elements are not stored in contiguous memory locations. Each element points to the next one.</p>
+            
+            <h4>Code Example:</h4>
+            <pre><code>
+// Python Example - Linked List
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+# Create nodes
+node1 = Node(10)
+node2 = Node(20)
+node3 = Node(30)
+
+# Link nodes
+node1.next = node2
+node2.next = node3
+
+# Traverse linked list
+current = node1
+while current:
+    print(current.data, end=" -> ")
+    current = current.next
+            </code></pre>
+        </div>
+    </section>
+
+    <!-- More sections for Stacks, Queues, Trees, Graphs, Sorting Algorithms -->
+    
+    <section class="section" id="stacks">
+        <div class="container">
+            <h3>Stacks</h3>
+            <p>A Stack is a linear data structure that follows the Last In First Out (LIFO) principle. It supports operations such as push, pop, and peek.</p>
+        </div>
+    </section>
+
+    <section class="section" id="queues">
+        <div class="container">
+            <h3>Queues</h3>
+            <p>A Queue is a linear data structure that follows the First In First Out (FIFO) principle. It supports operations such as enqueue, dequeue, and front.</p>
+        </div>
+    </section>
+
+    <section class="section" id="trees">
+        <div class="container">
+            <h3>Trees</h3>
+            <p>A Tree is a hierarchical data structure where each node has zero or more children nodes. The root node is the topmost node of the tree.</p>
+        </div>
+    </section>
+
+    <section class="section" id="graphs">
+        <div class="container">
+            <h3>Graphs</h3>
+            <p>A Graph is a collection of nodes (vertices) and edges that connect pairs of nodes. It can be used to model various real-world scenarios like networks.</p>
+        </div>
+    </section>
+
+    <section class="section" id="sorting-algorithms">
+        <div class="container">
+            <h3>Sorting Algorithms</h3>
+            <p>Sorting algorithms arrange elements of a list in a specific order (ascending or descending). Common sorting algorithms include Bubble Sort, Merge Sort, and Quick Sort.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 DSA Visualizer & Practice Platform | MASTER TEAM | All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/Js/learning.js"></script>
+</body>
+</html>

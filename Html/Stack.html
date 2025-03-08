@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stack Data Structure - DSA Visualizer</title>
+    <link rel="stylesheet" href="/Css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Stack - Data Structure</h1>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/Html/Dsa.html">DSA</a></li>
+                    <li><a href="/Html/practice.html">Practice</a></li>
+                    <li><a href="/Html/login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2>What is a Stack?</h2>
+            <p>A stack is a linear data structure that follows the <strong>Last In First Out (LIFO)</strong> principle. This means that the last element added to the stack will be the first one to be removed.</p>
+            
+            <h3>Stack Operations</h3>
+            <ul>
+                <li><strong>Push:</strong> Add an element to the top of the stack.</li>
+                <li><strong>Pop:</strong> Remove and return the element from the top of the stack.</li>
+                <li><strong>Peek:</strong> Return the top element without removing it.</li>
+                <li><strong>Is Empty:</strong> Check if the stack is empty.</li>
+                <li><strong>Is Full (if size limit is set):</strong> Check if the stack is full.</li>
+            </ul>
+
+            <h3>Python Code Example for Stack</h3>
+            <pre>
+<code>
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, item):
+        self.stack.append(item)
+        print(f"Pushed {item} to the stack.")
+
+    def pop(self):
+        if not self.is_empty():
+            return self.stack.pop()
+        else:
+            return "Stack is empty!"
+
+    def peek(self):
+        if not self.is_empty():
+            return self.stack[-1]
+        else:
+            return "Stack is empty!"
+
+    def is_empty(self):
+        return len(self.stack) == 0
+
+    def display(self):
+        print("Stack: ", self.stack)
+
+# Example usage
+my_stack = Stack()
+my_stack.push(10)
+my_stack.push(20)
+my_stack.display()
+print(f"Popped item: {my_stack.pop()}")
+print(f"Top item: {my_stack.peek()}")
+my_stack.display()
+</code>
+            </pre>
+
+            <h3>Time and Space Complexity</h3>
+            <ul>
+                <li><strong>Push:</strong> O(1) - constant time.</li>
+                <li><strong>Pop:</strong> O(1) - constant time.</li>
+                <li><strong>Peek:</strong> O(1) - constant time.</li>
+                <li><strong>Space Complexity:</strong> O(n) - where n is the number of elements in the stack.</li>
+            </ul>
+
+            <h3>Visualization of Stack Operations</h3>
+            <div id="visualization">
+                <button onclick="pushToStack()">Push</button>
+                <button onclick="popFromStack()">Pop</button>
+                <div id="stackContainer"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 DSA Visualizer & Practice Platform | MASTER TEAM | All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="stack.js"></script>
+</body>
+</html>

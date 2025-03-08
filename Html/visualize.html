@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualize Data Structures & Algorithms</title>
+    <link rel="stylesheet" href="/Css/visualize.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Visualize Data Structures & Algorithms</h1>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/Html/Dsa.html">DSA</a></li>
+                    <li><a href="/Html/practice.html">Practice</a></li>
+                    <li><a href="/Html/visualize.html">Visualize</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2>Visualization Options</h2>
+            <p>Explore real-time visualizations of data structures and algorithms. Select one to begin:</p>
+
+            <div class="visualize-options">
+                <div class="option">
+                    <h3>Sorting Algorithms</h3>
+                    <button onclick="visualizeSorting()">Visualize Sorting</button>
+                </div>
+                <div class="option">
+                    <h3>Binary Search Tree</h3>
+                    <button onclick="visualizeTree()">Visualize Binary Tree</button>
+                </div>
+                <div class="option">
+                    <h3>Graph Algorithms</h3>
+                    <button onclick="visualizeGraph()">Visualize Graph</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>Visualization Canvas</h2>
+            <div id="visualizationCanvas" class="canvas-container">
+                <p>Select an algorithm to visualize above.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 DSA Visualizer & Practice Platform | MASTER TEAM | All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/Js/visualize.js"></script>
+</body>
+</html>

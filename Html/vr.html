@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>VR Array Sorting Simulator - Mouse Control</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <style>
+      a-scene {
+        width: 100%;
+        height: 100vh;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <a-scene>
+      <!-- VR Camera with mouse-controlled cursor -->
+      <a-entity position="0 1.6 5">
+        <a-camera>
+          <a-cursor rayOrigin="mouse" color="black"></a-cursor>
+        </a-camera>
+      </a-entity>
+
+      <!-- Array Container for displaying the boxes -->
+      <a-entity id="array-container"></a-entity>
+      
+      <!-- Control Buttons -->
+      <a-entity position="0 0 -2">
+        <!-- Start Sort Button -->
+        <a-box id="start-sort" position="-1 0 0" color="blue" depth="0.5" height="0.5" width="0.5"
+               text="value: Start Sort; align: center; color: white; font-size: 24"></a-box>
+        <!-- Reset Array Button -->
+        <a-box id="reset-array" position="1 0 0" color="green" depth="0.5" height="0.5" width="0.5"
+               text="value: Reset Array; align: center; color: white; font-size: 24"></a-box>
+      </a-entity>
+    </a-scene>
+
+    <script>
+      // Global Variables
+      const arrayContainer = document.querySelector('#array-container');
+      let arrayElements = []; // holds a-box elements
+      let arrayValues = [];   // holds corresponding numeric values
+      const numElements = 8;  // Number of elements in the array
+      const startX = -3;      // Starting x position for the first element
+      const gap = 1.0;        // Gap between boxes
+
+      // Function to create a new random array and display it in VR
+      function createArray() {
+        // Clear any existing boxes
+        arrayContainer.innerHTML = '';
+        arrayElements = [];
+        arrayValues = [];
+
+        for (let i = 0; i < numElements; i++) {
+          // Generate a random value between 1 and 10
+          const val = Math.floor(Math.random() * 10) + 1;
+          arrayValues.push(val);
+          
+          // Create a box where the height is proportional to the value
+          const box = document.createElement('a-box');
+          const xPos = startX + i * gap;
+          const height = val * 0.3; // Scale factor for visual height
+          // Set position so that box's bottom aligns near y=0
+          box.setAttribute('position', `${xPos} ${height / 2} -3`);
+          box.setAttribute('height', height);
+          box.setAttribute('width', '0.8');
+          box.setAttribute('depth', '0.8');
+          box.setAttribute('color', '#4CC3D9');
+
+          // Create a text label to display the numeric value on the box
+          const label = document.createElement('a-text');
+          label.setAttribute('value', val);
+          label.setAttribute('color', 'black');
+          label.setAttribute('align', 'center');
+          label.setAttribute('font-size', '24');
+          // Label positioned slightly above the front face of the box
+          label.setAttribute('position', '0 0.5 0.41');
+          box.appendChild(label);
+
+          arrayContainer.appendChild(box);
+          arrayElements.push(box);
+        }
+      }
+
+      // Bubble Sort Simulation: visualizes the sorting process with animations
+      async function bubbleSort() {
+        const n = arrayValues.length;
+        let swapped;
+        for (let i = 0; i < n - 1; i++) {
+          swapped = false;
+          for (let j = 0; j < n - i - 1; j++) {
+            // Highlight the two boxes being compared
+            arrayElements[j].setAttribute('color', 'yellow');
+            arrayElements[j + 1].setAttribute('color', 'yellow');
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            if (arrayValues[j] > arrayValues[j + 1]) {
+              // Animate swapping of two boxes
+              await swapElements(j, j + 1);
+              
+              // Swap the numeric values
+              let tempVal = arrayValues[j];
+              arrayValues[j] = arrayValues[j + 1];
+              arrayValues[j + 1] = tempVal;
+              
+              // Swap the positions in the array of elements to maintain consistency
+              let tempEl = arrayElements[j];
+              arrayElements[j] = arrayElements[j + 1];
+              arrayElements[j + 1] = tempEl;
+              swapped = true;
+            }
+            // Reset the colors after comparison
+            arrayElements[j].setAttribute('color', '#4CC3D9');
+            arrayElements[j + 1].setAttribute('color', '#4CC3D9');
+          }
+          // If no swaps occurred in this pass, the array is sorted
+          if (!swapped) break;
+        }
+      }
+
+      // Function to animate swapping of two elements
+      async function swapElements(index1, index2) {
+        const box1 = arrayElements[index1];
+        const box2 = arrayElements[index2];
+        const pos1 = box1.getAttribute('position');
+        const pos2 = box2.getAttribute('position');
+        const duration = 1000; // duration of swap in milliseconds
+        const steps = 20;
+        const stepTime = duration / steps;
+
+        // Interpolate positions for a smooth swap animation
+        for (let step = 0; step <= steps; step++) {
+          const newX1 = pos1.x + (pos2.x - pos1.x) * (step / steps);
+          const newX2 = pos2.x + (pos1.x - pos2.x) * (step / steps);
+          box1.setAttribute('position', `${newX1} ${pos1.y} ${pos1.z}`);
+          box2.setAttribute('position', `${newX2} ${pos2.y} ${pos2.z}`);
+          await new Promise(resolve => setTimeout(resolve, stepTime));
+        }
+      }
+
+      // Event listeners for the control buttons
+      document.querySelector('#start-sort').addEventListener('click', () => {
+        bubbleSort();
+      });
+      
+      document.querySelector('#reset-array').addEventListener('click', () => {
+        createArray();
+      });
+
+      // Initialize the array on page load
+      createArray();
+    </script>
+  </body>
+</html>
+```

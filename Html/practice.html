@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Code Runner</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #1e1e1e; color: #ffffff; }
+        textarea { width: 80%; height: 200px; display: block; margin: 10px auto; background: #333; color: #fff; border: 1px solid #555; padding: 10px; border-radius: 5px; }
+        button { margin: 10px; padding: 10px; font-size: 16px; background: #2D336B; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #007bff; }
+        pre { background: #222; padding: 10px; border-radius: 5px; text-align: left; color: #0f0; }
+        iframe { width: 80%; height: 300px; background: white; border: 1px solid #555; display: none; margin: 10px auto; }
+        #output-container { display: none; }
+        #editor-container { display: block; }
+        footer {
+            background: #2D336B;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            /* margin-top: 20px; */
+        }
+        
+        footer p {
+            font-size: 1rem;
+        }
+        .container1 {
+            width: 90%;
+            margin: auto;
+            max-width: 1200px;
+        }
+            .ct{
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        header {
+            background: #2D336B;
+            color: #fff;margin-bottom: 5px;
+            /* padding-top: 15px; */
+        }
+        
+        header h1 {
+            text-align: center;
+            margin-top: 15px;
+            padding-bottom: 30px;
+        }
+        
+        nav ul {
+            list-style: none;
+            text-align: center;
+            padding-top: 20px;
+            
+        }
+        
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        nav ul li a:hover {
+            color: #dcd1da;
+            font-size: large;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+          }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container1 ct">
+            <h1>VIRTUAL BOOK</h1>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/Html/Dsa.html">DSA</a></li>
+                    <li><a href="/Html/visualize.html">Visualize</a></li>
+                    <li><a href="/Html/learn.html">Learn</a></li>
+                    <li><a href="/Html/practice.html">Practice</a></li>
+                    <li><a href="/Html/login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <h2>Advanced Code Runner</h2>
+    <div id="editor-container">
+        <select id="language">
+            <option value="javascript">JavaScript</option>
+            <option value="python">Python</option>
+            <option value="html">HTML</option>
+        </select>
+        <br>
+        <textarea id="code" placeholder="Write your code here..."></textarea>
+        <br>
+        <button onclick="runCode()">Run Code</button>
+        <button onclick="undoCode()">Back</button>
+        <button onclick="debugCode()">Debug</button>
+    </div>
+    
+    <div id="output-container">
+        <h3>Output:</h3>
+        <pre id="output"></pre>
+        <iframe id="html-output"></iframe>
+        <button onclick="goBackToCode()">Go Back to Code</button>
+    </div>
+    <footer>
+        <div class="container">
+            <p>© 2024 DSA Visualizer & Practice Platform | Master Team | All rights reserved.</p>
+        </div>
+    </footer>
+  
+    
+    <script>
+        let codeHistory = [];
+
+        function runCode() {
+            let code = document.getElementById("code").value;
+            let language = document.getElementById("language").value;
+            codeHistory.push(code);
+            document.getElementById("output-container").style.display = "block";
+            document.getElementById("editor-container").style.display = "none";
+            
+            if (language === "javascript") {
+                try {
+                    let result = eval(code);
+                    document.getElementById("output").textContent = result;
+                    document.getElementById("html-output").style.display = "none";
+                } catch (error) {
+                    document.getElementById("output").textContent = "Error: " + error;
+                }
+            } else if (language === "python") {
+                document.getElementById("output").textContent = "Python execution is not supported in browser yet.";
+                document.getElementById("html-output").style.display = "none";
+            } else if (language === "html") {
+                let iframe = document.getElementById("html-output");
+                iframe.style.display = "block";
+                let doc = iframe.contentWindow.document;
+                doc.open();
+                doc.write(code);
+                doc.close();
+                document.getElementById("output").textContent = "";
+            } else {
+                document.getElementById("output").textContent = "Selected language is not supported yet.";
+                document.getElementById("html-output").style.display = "none";
+            }
+        }
+
+        function undoCode() {
+            if (codeHistory.length > 1) {
+                codeHistory.pop();
+                document.getElementById("code").value = codeHistory[codeHistory.length - 1];
+            } else {
+                document.getElementById("code").value = "";
+            }
+        }
+
+        function debugCode() {
+            let code = document.getElementById("code").value;
+            let language = document.getElementById("language").value;
+            
+            if (language === "javascript") {
+                try {
+                    console.log("Debugging code:", code);
+                    let result = eval(code);
+                    document.getElementById("output").textContent = "Debugging successful: " + result;
+                } catch (error) {
+                    console.error("Debugging error:", error);
+                    document.getElementById("output").textContent = "Debugging Error: " + error;
+                }
+            } else {
+                document.getElementById("output").textContent = "Debugging is only supported for JavaScript currently.";
+            }
+        }
+
+        function goBackToCode() {
+            document.getElementById("output-container").style.display = "none";
+            document.getElementById("editor-container").style.display = "block";
+        }
+        function runCode() {
+    let code = document.getElementById("code").value;
+    let language = document.getElementById("language").value;
+    codeHistory.push(code);
+    document.getElementById("output-container").style.display = "block";
+    document.getElementById("editor-container").style.display = "none";
+    
+    if (language === "javascript") {
+        try {
+            let result = eval(code);
+            document.getElementById("output").textContent = result;
+            document.getElementById("html-output").style.display = "none";
+        } catch (error) {
+            document.getElementById("output").textContent = "Error: " + error;
+        }
+    } else if (language === "python") {
+        fetch("https://some-python-execution-api.com/execute", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ code: code })
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("output").textContent = data.output || "Error: Unable to execute Python code.";
+        })
+        .catch(error => {
+            document.getElementById("output").textContent = "Error: " + error.message;
+        });
+        document.getElementById("html-output").style.display = "none";
+    } else if (language === "html") {
+        let iframe = document.getElementById("html-output");
+        iframe.style.display = "block";
+        let doc = iframe.contentWindow.document;
+        doc.open();
+        doc.write(code);
+        doc.close();
+        document.getElementById("output").textContent = "";
+    } else {
+        document.getElementById("output").textContent = "Selected language is not supported yet.";
+        document.getElementById("html-output").style.display = "none";
+    }
+}
+function runCode() {
+    let code = document.getElementById("code").value;
+    let language = document.getElementById("language").value;
+    codeHistory.push(code);
+    document.getElementById("output-container").style.display = "block";
+    document.getElementById("editor-container").style.display = "none";
+
+    if (language === "javascript") {
+        try {
+            let result = new Function(code)(); // Safely execute JavaScript code
+            document.getElementById("output").textContent = result !== undefined ? result : "Code executed without returning a value.";
+        } catch (error) {
+            document.getElementById("output").textContent = "Error: " + error;
+        }
+        document.getElementById("html-output").style.display = "none";
+    } else if (language === "html") {
+        let iframe = document.getElementById("html-output");
+        iframe.style.display = "block";
+        let doc = iframe.contentWindow.document;
+        doc.open();
+        doc.write(code);
+        doc.close();
+        document.getElementById("output").textContent = "";
+    } else if (language === "python") {
+        document.getElementById("output").textContent = "Python execution is not supported in this browser yet.";
+        document.getElementById("html-output").style.display = "none";
+    } else {
+        document.getElementById("output").textContent = "Selected language is not supported yet.";
+        document.getElementById("html-output").style.display = "none";
+    }
+}
+
+    </script>
+</body>
+</html>

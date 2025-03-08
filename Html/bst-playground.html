@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BST Playground</title>
+    <link rel="stylesheet" href="/Css/bst-style.css">
+    <style>
+        #bstCanvas {
+            border: 1px solid black;
+            background-color: #f9f9f9;
+        }
+        .controls {
+            margin-top: 20px;
+        }
+        .controls input, .controls button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>BST Playground</h2>
+        <canvas id="bstCanvas" width="800" height="400"></canvas>
+        <div class="controls">
+            <input type="number" id="nodeValue" placeholder="Enter a value">
+            <button onclick="insertNode()">Insert</button>
+            <button onclick="deleteNode()">Delete</button>
+            <button onclick="clearTree()">Clear Tree</button>
+            <button><a href="/Html/vrbst.html" style="text-decoration: none; color:white">VR Implementation</a></button>
+        </div>
+    </div>
+    <script src="/Js/bst.js"></script>
+</body>
+</html>

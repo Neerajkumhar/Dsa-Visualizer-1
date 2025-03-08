@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Queue Data Structure - DSA Visualizer</title>
+    <link rel="stylesheet" href="/Css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Queue - Data Structure</h1>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/Html/Dsa.html">DSA</a></li>
+                    <li><a href="/Html/practice.html">Practice</a></li>
+                    <li><a href="/Html/login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2>What is a Queue?</h2>
+            <p>A queue is a linear data structure that follows the <strong>First In First Out (FIFO)</strong> principle. This means that the first element added to the queue will be the first one to be removed.</p>
+            
+            <h3>Queue Operations</h3>
+            <ul>
+                <li><strong>Enqueue:</strong> Add an element to the end of the queue.</li>
+                <li><strong>Dequeue:</strong> Remove and return the element from the front of the queue.</li>
+                <li><strong>Front:</strong> Return the element at the front of the queue without removing it.</li>
+                <li><strong>Is Empty:</strong> Check if the queue is empty.</li>
+                <li><strong>Is Full (if size limit is set):</strong> Check if the queue is full.</li>
+            </ul>
+
+            <h3>Python Code Example for Queue</h3>
+            <pre>
+<code>
+class Queue:
+    def __init__(self):
+        self.queue = []
+
+    def enqueue(self, item):
+        self.queue.append(item)
+        print(f"Enqueued {item} to the queue.")
+
+    def dequeue(self):
+        if not self.is_empty():
+            return self.queue.pop(0)
+        else:
+            return "Queue is empty!"
+
+    def front(self):
+        if not self.is_empty():
+            return self.queue[0]
+        else:
+            return "Queue is empty!"
+
+    def is_empty(self):
+        return len(self.queue) == 0
+
+    def display(self):
+        print("Queue: ", self.queue)
+
+# Example usage
+my_queue = Queue()
+my_queue.enqueue(10)
+my_queue.enqueue(20)
+my_queue.display()
+print(f"Dequeued item: {my_queue.dequeue()}")
+print(f"Front item: {my_queue.front()}")
+my_queue.display()
+</code>
+            </pre>
+
+            <h3>Time and Space Complexity</h3>
+            <ul>
+                <li><strong>Enqueue:</strong> O(1) - constant time.</li>
+                <li><strong>Dequeue:</strong> O(1) - constant time.</li>
+                <li><strong>Front:</strong> O(1) - constant time.</li>
+                <li><strong>Space Complexity:</strong> O(n) - where n is the number of elements in the queue.</li>
+            </ul>
+
+            <h3>Visualization of Queue Operations</h3>
+            <div id="visualization">
+                <button onclick="enqueueToQueue()">Enqueue</button>
+                <button onclick="dequeueFromQueue()">Dequeue</button>
+                <div id="queueContainer"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 DSA Visualizer & Practice Platform | MASTER TEAM | All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/Js/queue.js"></script>
+</body>
+</html>

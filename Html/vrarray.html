@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>VR Array Indexing Simulator</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <style>
+      .clickable {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <a-scene>
+      <a-text value="VR Array Indexing Simulator" color="black" align="center" position="0 4 -3" scale="2 2 2"></a-text>
+      
+      <a-entity id="cameraRig" position="0 1.6 5">
+        <a-camera>
+          <a-cursor rayOrigin="mouse" color="black" raycaster="objects: .clickable"></a-cursor>
+        </a-camera>
+        <a-box id="exit-btn" class="clickable" position="0 -0.5 -1" color="orange" depth="0.3" height="0.3" width="0.3"
+               text="value: Exit; align: center; color: white"></a-box>
+      </a-entity>
+      
+      <a-entity id="array-container"></a-entity>
+      
+      <a-entity id="controls" position="0 0 -2">
+        <a-box id="prev-index" class="clickable" position="-1 0 0" color="blue" depth="0.5" height="0.5" width="0.5"
+               text="value: Prev; align: center; color: white"></a-box>
+        <a-box id="next-index" class="clickable" position="1 0 0" color="blue" depth="0.5" height="0.5" width="0.5"
+               text="value: Next; align: center; color: white"></a-box>
+        <a-box id="reset-array" class="clickable" position="0 -1 0" color="green" depth="0.5" height="0.5" width="0.5"
+               text="value: Reset; align: center; color: white"></a-box>
+      </a-entity>
+    </a-scene>
+    
+    <script>
+      const arrayContainer = document.getElementById('array-container');
+      let arrayElements = [];
+      let arrayValues = [];
+      const numElements = 8;
+      const startX = -3;
+      const gap = 1.0;
+      let currentIndex = 0;
+      let pointer = null;
+
+      function createArray() {
+        arrayContainer.innerHTML = '';
+        arrayElements = [];
+        arrayValues = [];
+        for (let i = 0; i < numElements; i++) {
+          const val = Math.floor(Math.random() * 100) + 1;
+          arrayValues.push(val);
+          const box = document.createElement('a-box');
+          const xPos = startX + i * gap;
+          box.setAttribute('position', `${xPos} 1 -3`);
+          box.setAttribute('height', '0.8');
+          box.setAttribute('width', '0.8');
+          box.setAttribute('depth', '0.8');
+          box.setAttribute('color', '#4CC3D9');
+          const label = document.createElement('a-text');
+          label.setAttribute('value', val);
+          label.setAttribute('align', 'center');
+          label.setAttribute('color', 'black');
+          label.setAttribute('position', '0 0.5 0.41');
+          box.appendChild(label);
+          arrayContainer.appendChild(box);
+          arrayElements.push(box);
+        }
+        if (!pointer) {
+          pointer = document.createElement('a-sphere');
+          pointer.setAttribute('radius', '0.2');
+          pointer.setAttribute('color', 'yellow');
+          arrayContainer.appendChild(pointer);
+        }
+        updatePointer();
+      }
+
+      function updatePointer() {
+        const xPos = startX + currentIndex * gap;
+        pointer.setAttribute('position', `${xPos} 1.8 -3`);
+      }
+
+      document.getElementById('prev-index').addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updatePointer();
+        }
+      });
+
+      document.getElementById('next-index').addEventListener('click', () => {
+        if (currentIndex < numElements - 1) {
+          currentIndex++;
+          updatePointer();
+        }
+      });
+
+      document.getElementById('reset-array').addEventListener('click', () => {
+        currentIndex = 0;
+        createArray();
+      });
+
+      document.getElementById('exit-btn').addEventListener('click', () => {
+        const scene = document.querySelector('a-scene');
+        if (scene.is('vr-mode')) {
+          scene.exitVR();
+        } else {
+          window.location.href = '/Html/sorting-visualizer.html';
+        }
+      });
+
+      createArray();
+    </script>
+  </body>
+</html>
+```

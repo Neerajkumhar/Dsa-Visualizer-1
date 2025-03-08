@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+        .course-section {
+            background: #FFF2F2;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h2 {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .video-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .video-card {
+            flex: 0 0 23%;
+            height: 150px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .video-card iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        @media (max-width: 768px) {
+            .video-card {
+                flex: 0 0 48%;
+            }
+        }
+        @media (max-width: 480px) {
+            .video-card {
+                flex: 0 0 100%;
+            }
+        }
+
+        .container1 {
+            width: 90%;
+            margin: auto;
+            max-width: 1200px;
+        }
+            .ct{
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        header {
+            background: #2D336B;
+            color: #fff;margin-bottom: 5px;
+            /* padding-top: 15px; */
+        }
+        
+        header h1 {
+            text-align: center;
+            margin-top: 15px;
+            padding-bottom: 30px;
+        }
+        
+        nav ul {
+            list-style: none;
+            text-align: center;
+            padding-top: 20px;
+            
+        }
+        
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        nav ul li a:hover {
+            color: #dcd1da;
+            font-size: large;
+        }
+        footer {
+            background: #2D336B;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            /* margin-top: 20px; */
+        }
+        
+        footer p {
+            font-size: 1rem;
+        }
+       
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container1 ct">
+            <h1>VIRTUAL BOOK</h1>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/Html/Dsa.html">DSA</a></li>
+                    <li><a href="/Html/visualize.html">Visualize</a></li>
+                    <li><a href="/Html/learn.html">Learn</a></li>
+                    <li><a href="/Html/practice.html">Practice</a></li>
+                    <li><a href="/Html/login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+        
+    <div class="course-section">
+        <h2>DSA Courses</h2>
+        <p>
+            Learn Data Structures and Algorithms with these essential courses. Enhance your problem-solving skills and become proficient in coding.</p>
+        <div class="video-container">
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/CBYHwZcbD-s?si=xN-yFc0yWCyED3zJ" allowfullscreen></iframe>
+            </div>
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/pkYVOmU3MgA?si=6HWSi5j9eYeSBohC" allowfullscreen></iframe>
+            </div>
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/MtVZAXepMPM?si=tnDZttTgx7a4FuPk" allowfullscreen></iframe>
+            </div>
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/jQqQpPMYPXs?si=ELuL2Vvi7aKnZNkw" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="course-section">
+        <h2>Java Courses</h2>
+        <p>
+            Master Java programming with in-depth tutorials and hands-on projects. Learn object-oriented programming, data structures, and real-world application development.</p>
+        <div class="video-container">
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/UmnCZ7-9yDY?si=D7SId4udWjVG3LLr" allowfullscreen></iframe>
+            </div>
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/yRpLlJmRo2w?si=WzMK1WCy0jBvk-P_" allowfullscreen></iframe>
+            </div>
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/ntLJmHOJ0ME?si=h94WPir6oKPN3RlG" allowfullscreen></iframe>
+            </div>
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/xk4_1vDrzzo?si=6zMtIcOKMIONkvK6" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="course-section">
+        <h2>Python Courses</h2>
+        <p>
+            Dive into Python programming with beginner to advanced courses. Learn automation, data analysis, machine learning, and web development using Python.</p>
+        <div class="video-container">
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/UrsmFxEIp5k?si=sX_Uu0Y7YH4QtLWo" allowfullscreen></iframe>
+            </div>
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/_uQrJ0TkZlc?si=7jJDdTcb70-l-vBd" allowfullscreen></iframe>
+            </div>
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/t2_Q2BRzeEE?si=2EuLLFhu2oqVQc25" allowfullscreen></iframe>
+            </div>
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/6i3EGqOBRiU?si=KvDdaPH_HYcNs96S" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 DSA Visualizer & Practice Platform | Master Team | All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        function scrollSlider(id, direction) {
+            const slider = document.getElementById(id);
+            const cardWidth = document.querySelector(".video-card").offsetWidth + 10; // Card width + margin
+            const moveDistance = cardWidth * direction; // Move 1 video at a time
+            let currentTransform = getComputedStyle(slider).transform;
+            let currentX = currentTransform !== 'none' ? parseInt(currentTransform.split(',')[4]) : 0;
+            let maxScroll = -(slider.scrollWidth - slider.parentElement.offsetWidth);
+            let newX = currentX + moveDistance;
+            if (newX > 0) newX = 0;
+            if (newX < maxScroll) newX = maxScroll;
+            slider.style.transform = `translateX(${newX}px)`;
+        }
+        
+      
+      
+    </script>
+    
+</body>
+</html>

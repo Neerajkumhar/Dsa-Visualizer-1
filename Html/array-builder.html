@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Builder</title>
+    <link rel="stylesheet" href="/Css/array-builder.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Array Builder</h1>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/Html/Dsa.html">DSA</a></li>
+                    <li><a href="/Html/learn.html">Learn</a></li>
+                    <li><a href="/Html/explore.html">Explore</a></li>
+                    <li><a href="/Html/array-builder.html">Array Builder</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="section">
+        <button class="vb"><a href="/Html/vrarray.html" style="text-decoration: none; color:white;">VR Implementation</a></button>
+        <div class="container">
+            <h2>Build and Manipulate Arrays</h2>
+            <p>Use the array builder to create and manipulate an array with basic operations such as insertion, deletion, and updating elements.</p>
+
+            <div class="array-controls">
+                <label for="arrayInput">Enter values for the array (comma separated):</label>
+                <input type="text" id="arrayInput" placeholder="e.g., 10, 20, 30, 40, 50">
+                <button onclick="buildArray()">Build Array</button>
+            </div>
+
+            <div id="arrayDisplay" class="array-display"></div>
+
+            <h3>Array Operations</h3>
+            <div class="operation">
+                <label for="insertValue">Insert Value:</label>
+                <input type="text" id="insertValue" placeholder="Enter value">
+                <label for="insertIndex">At Index:</label>
+                <input type="number" id="insertIndex" placeholder="Enter index">
+                <button onclick="insertValue()">Insert</button>
+            </div>
+
+            <div class="operation">
+                <label for="deleteIndex">Delete Value at Index:</label>
+                <input type="number" id="deleteIndex" placeholder="Enter index">
+                <button onclick="deleteValue()">Delete</button>
+            </div>
+
+            <div class="operation">
+                <label for="updateIndex">Update Value at Index:</label>
+                <input type="number" id="updateIndex" placeholder="Enter index">
+                <label for="updateValue">New Value:</label>
+                <input type="text" id="updateValue" placeholder="Enter new value">
+                <button onclick="updateValue()">Update</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 DSA Visualizer & Practice Platform | MASTER TEAM | All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/Js/array-builder.js"></script>
+</body>
+</html>

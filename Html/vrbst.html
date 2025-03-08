@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>VR Binary Search Tree Simulator</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <style>
+      a-scene {
+        width: 100%;
+        height: 100vh;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <a-scene>
+      <!-- Title Text in 3D -->
+      <a-text value="Binary Search Tree in 3D" color="black" align="center" position="0 4 -3" scale="2 2 2"></a-text>
+      
+      <!-- Camera Rig with mouse-controlled cursor and Exit Button -->
+      <a-entity id="cameraRig" position="0 1.6 0">
+        <a-camera>
+          <a-cursor rayOrigin="mouse" color="black"></a-cursor>
+        </a-camera>
+        <!-- Exit Button attached to camera so it's always visible -->
+        <a-box id="exit-btn" position="0 -0.5 -1" color="orange" depth="0.3" height="0.3" width="0.3"
+               text="value: Exit; align: center; color: white"></a-box>
+      </a-entity>
+
+      <!-- Container for displaying the BST nodes and connecting lines -->
+      <a-entity id="tree-container"></a-entity>
+      
+      <!-- Control Buttons for BST operations -->
+      <a-entity id="bst-controls" position="0 0 -2">
+        <!-- Insert Node Button -->
+        <a-box id="insert-node" position="-1 0 0" color="blue" depth="0.5" height="0.5" width="0.5"
+               text="value: Insert Node; align: center; color: white"></a-box>
+        <!-- Reset Tree Button -->
+        <a-box id="reset-tree" position="1 0 0" color="green" depth="0.5" height="0.5" width="0.5"
+               text="value: Reset Tree; align: center; color: white"></a-box>
+      </a-entity>
+    </a-scene>
+
+    <script>
+      // BST Node Constructor
+      class BSTNode {
+        constructor(value, x, y, depth) {
+          this.value = value;
+          this.x = x;
+          this.y = y;
+          this.depth = depth;
+          this.left = null;
+          this.right = null;
+          this.entity = null; // A-Frame element representing this node
+        }
+      }
+
+      let treeRoot = null; // Global BST root
+      const treeContainer = document.querySelector('#tree-container');
+
+      // Function to create a node element in the scene
+      function createNodeElement(node) {
+        const sphere = document.createElement('a-sphere');
+        sphere.setAttribute('position', `${node.x} ${node.y} -3`);
+        sphere.setAttribute('radius', '0.3');
+        sphere.setAttribute('color', '#FFC65D');
+        
+        // Create a text label to display the node's value
+        const label = document.createElement('a-text');
+        label.setAttribute('value', node.value);
+        label.setAttribute('align', 'center');
+        label.setAttribute('color', 'black');
+        label.setAttribute('position', '0 0.4 0');
+        sphere.appendChild(label);
+        
+        treeContainer.appendChild(sphere);
+        return sphere;
+      }
+
+      // Function to draw a line between parent and child nodes
+      function createLine(x1, y1, x2, y2) {
+        const line = document.createElement('a-entity');
+        // All nodes assumed at z = -3
+        line.setAttribute('line', `start: ${x1} ${y1} -3; end: ${x2} ${y2} -3; color: black`);
+        treeContainer.appendChild(line);
+      }
+
+      // Recursive function to insert a new node into the BST
+      function insertIntoBST(node, value, parent, isLeft) {
+        if (node === null) {
+          let x, y, depth;
+          if (parent === null) {
+            // If tree is empty, new node becomes the root
+            x = 0;
+            y = 3;
+            depth = 0;
+          } else {
+            depth = parent.depth + 1;
+            y = parent.y - 1; // decrease y for each level
+            // Horizontal offset decreases with depth
+            const horizontalOffset = 3 / Math.pow(2, depth);
+            x = parent.x + (isLeft ? -horizontalOffset : horizontalOffset);
+          }
+          const newNode = new BSTNode(value, x, y, depth);
+          newNode.entity = createNodeElement(newNode);
+          // If not the root, draw a connecting line from parent
+          if (parent !== null) {
+            createLine(parent.x, parent.y, newNode.x, newNode.y);
+          }
+          return newNode;
+        } else {
+          if (value < node.value) {
+            node.left = insertIntoBST(node.left, value, node, true);
+          } else {
+            node.right = insertIntoBST(node.right, value, node, false);
+          }
+          return node;
+        }
+      }
+
+      // Function to insert a node with a given value
+      function insertNode(value) {
+        treeRoot = insertIntoBST(treeRoot, value, null, false);
+      }
+
+      // Function to reset the BST
+      function resetTree() {
+        treeRoot = null;
+        treeContainer.innerHTML = '';
+      }
+
+      // Event listener for the "Insert Node" button
+      document.querySelector('#insert-node').addEventListener('click', () => {
+        // Random value between 1 and 100
+        const value = Math.floor(Math.random() * 100) + 1;
+        insertNode(value);
+      });
+
+      // Event listener for the "Reset Tree" button
+      document.querySelector('#reset-tree').addEventListener('click', () => {
+        resetTree();
+      });
+
+      // Event listener for the Exit button
+      document.querySelector('#exit-btn').addEventListener('click', () => {
+        const scene = document.querySelector('a-scene');
+        if (scene.is('vr-mode')) {
+          scene.exitVR();
+        } else {
+          // Redirect to menu page if not in VR mode (change URL as needed)
+          window.location.href = 'menu.html';
+        }
+      });
+    </script>
+  </body>
+</html>
+```
